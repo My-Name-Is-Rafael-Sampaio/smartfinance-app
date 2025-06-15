@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 from smartfinance.config.labels import category_labels
+from smartfinance.core.utils import format_currency
 
 
 def plot_expenses_by_category(df: pd.DataFrame):
@@ -27,12 +28,9 @@ def plot_expenses_by_category(df: pd.DataFrame):
     ax.set_ylabel("Valor (R$)")
     ax.set_xlabel("Categoria")
     ax.grid(axis="y", linestyle="--", alpha=0.7)
+
     ax.yaxis.set_major_formatter(
-        mtick.FuncFormatter(
-            lambda x, _: f"R$ {x:,.2f}".replace(",", "X")
-            .replace(".", ",")
-            .replace("X", ".")
-        )
+        mtick.FuncFormatter(lambda x, _: f"{format_currency(x)}")
     )
 
     return fig

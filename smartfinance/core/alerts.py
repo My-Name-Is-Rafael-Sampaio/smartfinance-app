@@ -1,6 +1,7 @@
 from datetime import datetime
 import pandas as pd
 from smartfinance.config.loader import load_config
+from smartfinance.core.utils import format_currency
 
 
 def generate_alerts(df: pd.DataFrame, category_labels: dict = None) -> list[str]:
@@ -42,11 +43,7 @@ def generate_alerts(df: pd.DataFrame, category_labels: dict = None) -> list[str]
                     else top_category
                 )
                 alerts.append(
-                    f"🔎 Alto gasto na categoria '{label}' este mês: R$ {amount:,.2f}".replace(
-                        ",", "X"
-                    )
-                    .replace(".", ",")
-                    .replace("X", ".")
+                    f"🔎 Alto gasto na categoria '{label}' este mês: {format_currency(amount)}"
                 )
 
     if not alerts:

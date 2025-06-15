@@ -6,3 +6,12 @@ category_labels = {
     "Health": "Saúde",
     "Entertainment": "Lazer",
 }
+
+payment_labels = {
+    "Credit": "Crédito",
+    "Debit": "Débito",
+    "Pix": "Pix",
+    "Transfer": "Transferência",
+    "Boleto": "Boleto",
+    "Cash": "Dinheiro",
+}

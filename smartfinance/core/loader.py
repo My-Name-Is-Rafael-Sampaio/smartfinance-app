@@ -5,13 +5,20 @@ DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "transactions.csv"
 
 
 def load_transactions() -> pd.DataFrame:
-    """Carrega as transações do arquivo CSV."""
-    if DATA_PATH.exists() and DATA_PATH.stat().st_size > 0:
-        return pd.read_csv(DATA_PATH, parse_dates=["date"])
-    return pd.DataFrame(columns=["date", "description", "amount", "category", "card"])
+    """Carrega as transações do arquivo CSV, criando se necessário."""
+    columns = ["date", "description", "amount", "category", "card", "method", "person"]
+
+    if not DATA_PATH.exists():
+        pd.DataFrame(columns=columns).to_csv(DATA_PATH, index=False)
+
+    df = pd.read_csv(DATA_PATH, parse_dates=["date"])
+    for col in columns:
+        if col not in df.columns:
+            df[col] = "" if col in ["method", "person"] else None
+    return df[columns]
 
 
-def save_transaction(date, description, amount, category, card):
+def save_transaction(date, description, amount, category, card, method, person):
     """Salva uma nova transação no CSV."""
     new_entry = pd.DataFrame(
         [
@@ -21,6 +28,8 @@ def save_transaction(date, description, amount, category, card):
                 "amount": float(amount),
                 "category": category,
                 "card": card,
+                "method": method,
+                "person": person,
             }
         ]
     )

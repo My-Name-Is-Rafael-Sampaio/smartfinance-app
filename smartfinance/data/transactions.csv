@@ -1,7 +1,1 @@
-date,description,amount,category,card
-2025-06-14,Teste,5.0,Variable,Nubank
-2025-06-14,Teste,5.0,Variable,Nubank
-2025-06-14,Teste,1.0,Fixed,Nubank
-2025-06-14,Teste,5.0,Variable,PicPay
-2025-06-14,Teste,50.0,Transport,PicPay
-2025-06-14,Teste,100.0,Entertainment,PicPay
+date,description,amount,category,card,method,person
