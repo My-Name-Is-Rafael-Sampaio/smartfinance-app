@@ -1,0 +1,10 @@
+{
+  "Nubank": {
+    "closing_day": 4,
+    "due_day": 11
+  },
+  "PicPay": {
+    "closing_day": 17,
+    "due_day": 25
+  }
+}
